@@ -736,7 +736,7 @@
   A[pull_request_target] --&gt; B[linters];
   B --&gt; C[build];
   C --&gt; D[tests];</code></pre>
-<h3 id="linters"><a class="toclink" href="#linters">Linters</a><a class="headerlink" href="#linters" title="Permanent link">&para;</a></h3>
+<h3 id="linters">Linters<a class="headerlink" href="#linters" title="Permanent link">&para;</a></h3>
 <p>This job performs the following steps:</p>
 <ol>
 <li>Checks out the code</li>
@@ -763,7 +763,7 @@ Test<span class="w"> </span>shell<span class="w"> </span>scripts<span class="w">
 check<span class="w"> </span>json...............................................................Passed
 pre-commit<span class="w"> </span>executed.
 </code></pre></div>
-<h3 id="build"><a class="toclink" href="#build">Build</a><a class="headerlink" href="#build" title="Permanent link">&para;</a></h3>
+<h3 id="build">Build<a class="headerlink" href="#build" title="Permanent link">&para;</a></h3>
 <p>The "build" job uses the file <code>builders.yml</code> file to build binaries and images, performing the following steps:</p>
 <ol>
 <li>Sets up Go 1.19.</li>
@@ -774,7 +774,7 @@ pre-commit<span class="w"> </span>executed.
 <li>Installs the built artifacts</li>
 <li>Uploads the built binary file as an artifact named <strong>kube-burner</strong>.</li>
 </ol>
-<h3 id="tests"><a class="toclink" href="#tests">Tests</a><a class="headerlink" href="#tests" title="Permanent link">&para;</a></h3>
+<h3 id="tests">Tests<a class="headerlink" href="#tests" title="Permanent link">&para;</a></h3>
 <!-- BEGIN INCLUDE ./tests.md -->
 <p>The testing Workflow, defined in the <code>tests-k8s.yml</code> file, runs tests defined in the <code>test</code> directory of the repository.</p>
 <p>Tests are orchestrated with <a href="https://bats-core.readthedocs.io/en/stable/">bats</a></p>

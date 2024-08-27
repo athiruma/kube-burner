@@ -782,9 +782,9 @@
   
 
 
-<h1 id="indexing"><a class="toclink" href="#indexing">Indexing</a><a class="headerlink" href="#indexing" title="Permanent link">&para;</a></h1>
+<h1 id="indexing">Indexing<a class="headerlink" href="#indexing" title="Permanent link">&para;</a></h1>
 <p>Kube-burner can collect metrics and alerts from prometheus and from measurements and send them to the configured indexers.</p>
-<h2 id="metrics-endpoints"><a class="toclink" href="#metrics-endpoints">Metrics endpoints</a><a class="headerlink" href="#metrics-endpoints" title="Permanent link">&para;</a></h2>
+<h2 id="metrics-endpoints">Metrics endpoints<a class="headerlink" href="#metrics-endpoints" title="Permanent link">&para;</a></h2>
 <p>The logic to configure metric collection and indexing is established by the <code>metricsEndpoints</code> field of the configuration file, this field is a list of objects with the following structure:</p>
 <table>
 <thead>
@@ -851,7 +851,7 @@
 <p class="admonition-title">Note</p>
 <p>Info about how to configure <a href="../metrics/">metrics-profiles</a> and <a href="../alerting/">alerts-profiles</a></p>
 </div>
-<h2 id="indexers"><a class="toclink" href="#indexers">Indexers</a><a class="headerlink" href="#indexers" title="Permanent link">&para;</a></h2>
+<h2 id="indexers">Indexers<a class="headerlink" href="#indexers" title="Permanent link">&para;</a></h2>
 <p>Configured by the <code>indexer</code> field, it defines an indexer for the Prometheus endpoint, making all collected metrics to be indexed in it.
 Depending on the indexer, different configuration parameters need to be specified. The type of indexer is configured by the field <code>type</code></p>
 <table>
@@ -870,7 +870,7 @@ Depending on the indexer, different configuration parameters need to be specifie
 </tr>
 </tbody>
 </table>
-<h2 id="example"><a class="toclink" href="#example">Example</a><a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
+<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
 <p>An example of how the <code>metricsEndpoints</code> section would look like in the configuration is:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">metricsEndpoints</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">endpoint</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://localhost:9090</span>
@@ -889,7 +889,7 @@ Depending on the indexer, different configuration parameters need to be specifie
 <p class="admonition-title">Info</p>
 <p>Configuring an indexer in an endpoint is only required when any metrics profile is configured</p>
 </div>
-<h3 id="elasticopensearch"><a class="toclink" href="#elasticopensearch">Elastic/OpenSearch</a><a class="headerlink" href="#elasticopensearch" title="Permanent link">&para;</a></h3>
+<h3 id="elasticopensearch">Elastic/OpenSearch<a class="headerlink" href="#elasticopensearch" title="Permanent link">&para;</a></h3>
 <p>Send collected documents to Elasticsearch7 or OpenSearch instances.</p>
 <p>The <code>elastic</code> or <code>opensearch</code> indexer can be configured by the parameters below:</p>
 <table>
@@ -927,7 +927,7 @@ Depending on the indexer, different configuration parameters need to be specifie
 <p class="admonition-title">Info</p>
 <p>It is possible to index documents in an authenticated Elasticsearch or OpenSearch instance using the notation <code>http(s)://[username]:[password]@[address]:[port]</code> in the <code>esServers</code> parameter.</p>
 </div>
-<h3 id="local"><a class="toclink" href="#local">Local</a><a class="headerlink" href="#local" title="Permanent link">&para;</a></h3>
+<h3 id="local">Local<a class="headerlink" href="#local" title="Permanent link">&para;</a></h3>
 <p>This indexer writes collected metrics to local files.</p>
 <p>The <code>local</code> indexer can be configured by the parameters below:</p>
 <table>
@@ -960,7 +960,7 @@ Depending on the indexer, different configuration parameters need to be specifie
 </tr>
 </tbody>
 </table>
-<h2 id="job-summary"><a class="toclink" href="#job-summary">Job Summary</a><a class="headerlink" href="#job-summary" title="Permanent link">&para;</a></h2>
+<h2 id="job-summary">Job Summary<a class="headerlink" href="#job-summary" title="Permanent link">&para;</a></h2>
 <p>When an indexer is configured, a document holding the job summary is indexed at the end of the job. This is useful to identify the parameters the job was executed with. It also contains the timestamps of the execution phase (<code>timestamp</code> and <code>endTimestamp</code>) as well as the cleanup phase (<code>cleanupTimestamp</code> and <code>cleanupEndTimestamp</code>).</p>
 <p>This document looks like:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -1003,7 +1003,7 @@ Depending on the indexer, different configuration parameters need to be specifie
 <p class="admonition-title">Note</p>
 <p>It's possible that some of the fields from the document above don't get indexed when it has no value</p>
 </div>
-<h2 id="metric-exporting-importing"><a class="toclink" href="#metric-exporting-importing">Metric exporting &amp; importing</a><a class="headerlink" href="#metric-exporting-importing" title="Permanent link">&para;</a></h2>
+<h2 id="metric-exporting-importing">Metric exporting &amp; importing<a class="headerlink" href="#metric-exporting-importing" title="Permanent link">&para;</a></h2>
 <p>When using the <code>local</code> indexer, it is possible to dump all of the collected metrics into a tarball, which you can import later. This is useful in disconnected environments, where kube-burner does not have direct access to an Elasticsearch instance. Metrics exporting can be configured by <code>createTarball</code> field of the indexer config as noted in the <a href="#local">local indexer</a>.</p>
 <p>The metric exporting feature is available through the <code>init</code> and <code>index</code> subcommands. Once you enabled it, a tarball (<code>kube-burner-metrics-&lt;timestamp&gt;.tgz</code>) containing all metrics is generated in the current working directory. This tarball can be imported and indexed by kube-burner with the <code>import</code> subcommand. For example:</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>kube-burner/bin/kube-burner<span class="w"> </span>import<span class="w"> </span>--config<span class="w"> </span>kubelet-config.yml<span class="w"> </span>--tarball<span class="w"> </span>kube-burner-metrics-1624441857.tgz
@@ -1013,7 +1013,7 @@ Depending on the indexer, different configuration parameters need to be specifie
 <span class="go">INFO[2021-06-23 11:39:43] Indexing [1] documents in kube-burner</span>
 <span class="go">INFO[2021-06-23 11:39:43] Successfully indexed [1] documents in 208ms in kube-burner</span>
 </code></pre></div>
-<h2 id="scraping-from-multiple-endpoints"><a class="toclink" href="#scraping-from-multiple-endpoints">Scraping from multiple endpoints</a><a class="headerlink" href="#scraping-from-multiple-endpoints" title="Permanent link">&para;</a></h2>
+<h2 id="scraping-from-multiple-endpoints">Scraping from multiple endpoints<a class="headerlink" href="#scraping-from-multiple-endpoints" title="Permanent link">&para;</a></h2>
 <p>It is possible to scrape from multiple Prometheus endpoints and send the results to the target indexer with the <code>init</code> and <code>index</code> subcommands. This feature is configured by the flag <code>--metrics-endpoint</code>, which points to a YAML file with the required configuration.</p>
 <p>A valid file provided to the <code>--metrics-endpoint</code> looks like this:</p>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">endpoint</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://localhost:9090</span><span class="w"> </span><span class="c1"># This is one of the Prometheus endpoints</span>

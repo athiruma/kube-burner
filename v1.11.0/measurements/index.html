@@ -786,10 +786,10 @@
   
 
 
-<h1 id="measurements"><a class="toclink" href="#measurements">Measurements</a><a class="headerlink" href="#measurements" title="Permanent link">&para;</a></h1>
+<h1 id="measurements">Measurements<a class="headerlink" href="#measurements" title="Permanent link">&para;</a></h1>
 <p>Kube-burner allows you to get further metrics using other mechanisms or data sources, such as the Kubernetes API. These mechanisms are called measurements.</p>
 <p>Measurements are enabled in the <code>measurements</code> object of the configuration file. This object contains a list of measurements with their options.</p>
-<h2 id="pod-and-vmi-latency"><a class="toclink" href="#pod-and-vmi-latency">Pod and VMI latency</a><a class="headerlink" href="#pod-and-vmi-latency" title="Permanent link">&para;</a></h2>
+<h2 id="pod-and-vmi-latency">Pod and VMI latency<a class="headerlink" href="#pod-and-vmi-latency" title="Permanent link">&para;</a></h2>
 <p>Collects latencies from the different pod/vm/vmi startup phases, these <strong>latency metrics are in ms</strong>. It can be enabled with:</p>
 <div class="highlight"><pre><span></span><code><span class="w">  </span><span class="nt">measurements</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">podLatency</span>
@@ -798,7 +798,7 @@
 <div class="highlight"><pre><span></span><code><span class="w">  </span><span class="nt">measurements</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">podLatency</span>
 </code></pre></div>
-<h3 id="metrics"><a class="toclink" href="#metrics">Metrics</a><a class="headerlink" href="#metrics" title="Permanent link">&para;</a></h3>
+<h3 id="metrics">Metrics<a class="headerlink" href="#metrics" title="Permanent link">&para;</a></h3>
 <p>The metrics collected are pod latency timeseries (<code>podLatencyMeasurement</code>) and four documents holding a summary with different pod latency quantiles of each pod condition (<code>podLatencyQuantilesMeasurement</code>).</p>
 <p>One document, such as the following, is indexed per each pod created by the workload that enters in <code>Running</code> condition during the workload:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -862,7 +862,7 @@
 <li><code>Max</code>: Maximum value of the condition.</li>
 <li><code>Avg</code>: Average value of the condition.</li>
 </ul>
-<h3 id="pod-latency-thresholds"><a class="toclink" href="#pod-latency-thresholds">Pod latency thresholds</a><a class="headerlink" href="#pod-latency-thresholds" title="Permanent link">&para;</a></h3>
+<h3 id="pod-latency-thresholds">Pod latency thresholds<a class="headerlink" href="#pod-latency-thresholds" title="Permanent link">&para;</a></h3>
 <p>It is possible to establish pod latency thresholds to the different pod conditions and metrics by defining the option <code>thresholds</code> within this measurement:</p>
 <p>Establishing a threshold of 2000ms in the P99 metric of the <code>Ready</code> condition.</p>
 <div class="highlight"><pre><span></span><code><span class="w">  </span><span class="nt">measurements</span><span class="p">:</span>
@@ -877,7 +877,7 @@
 <span class="go">WARN[2020-12-15 12:37:08] P99 Ready latency (2929ms) higher than configured threshold: 2000ms</span>
 </code></pre></div>
 <p>In case of not meeting any of the configured thresholds, like the example above, <strong>kube-burner return code will be 1</strong>.</p>
-<h3 id="measure-subcommand-cli-example"><a class="toclink" href="#measure-subcommand-cli-example">Measure subcommand CLI example</a><a class="headerlink" href="#measure-subcommand-cli-example" title="Permanent link">&para;</a></h3>
+<h3 id="measure-subcommand-cli-example">Measure subcommand CLI example<a class="headerlink" href="#measure-subcommand-cli-example" title="Permanent link">&para;</a></h3>
 <p>Measure subcommand example with relevant options. It is used to fetch measurements on top of resources that were a part of workload ran in past.</p>
 <div class="highlight"><pre><span></span><code>kube-burner<span class="w"> </span>measure<span class="w"> </span>--uuid<span class="o">=</span>vchalla<span class="w"> </span>--namespaces<span class="o">=</span>cluster-density-v2-0,cluster-density-v2-1,cluster-density-v2-2,cluster-density-v2-3,cluster-density-v2-4<span class="w"> </span>--selector<span class="o">=</span>kube-burner-job<span class="o">=</span>cluster-density-v2<span class="w"> </span>
 <span class="nv">time</span><span class="o">=</span><span class="s2">&quot;2023-11-19 17:46:05&quot;</span><span class="w"> </span><span class="nv">level</span><span class="o">=</span>info<span class="w"> </span><span class="nv">msg</span><span class="o">=</span><span class="s2">&quot;📁 Creating indexer: elastic&quot;</span><span class="w"> </span><span class="nv">file</span><span class="o">=</span><span class="s2">&quot;kube-burner.go:226&quot;</span>
@@ -895,7 +895,7 @@
 <span class="nv">time</span><span class="o">=</span><span class="s2">&quot;2023-11-19 17:46:08&quot;</span><span class="w"> </span><span class="nv">level</span><span class="o">=</span>info<span class="w"> </span><span class="nv">msg</span><span class="o">=</span><span class="s2">&quot;Pod latencies error rate was: 0.00&quot;</span><span class="w"> </span><span class="nv">file</span><span class="o">=</span><span class="s2">&quot;pod_latency.go:236&quot;</span>
 <span class="nv">time</span><span class="o">=</span><span class="s2">&quot;2023-11-19 17:46:08&quot;</span><span class="w"> </span><span class="nv">level</span><span class="o">=</span>info<span class="w"> </span><span class="nv">msg</span><span class="o">=</span><span class="s2">&quot;👋 Exiting kube-burner vchalla&quot;</span><span class="w"> </span><span class="nv">file</span><span class="o">=</span><span class="s2">&quot;kube-burner.go:209&quot;</span>
 </code></pre></div>
-<h2 id="service-latency"><a class="toclink" href="#service-latency">Service latency</a><a class="headerlink" href="#service-latency" title="Permanent link">&para;</a></h2>
+<h2 id="service-latency">Service latency<a class="headerlink" href="#service-latency" title="Permanent link">&para;</a></h2>
 <p>Calculates the time taken the services to serve requests once their endpoints are ready. This measurement works as follows.</p>
 <pre class="mermaid"><code>graph LR
     A[Service created] --&gt; C{active endpoints?}
@@ -925,7 +925,7 @@
 <li>Endpoints are pinged one after another, this can create some delay when the number of endpoints of the service is big.</li>
 </ul>
 </div>
-<h3 id="metrics_1"><a class="toclink" href="#metrics_1">Metrics</a><a class="headerlink" href="#metrics_1" title="Permanent link">&para;</a></h3>
+<h3 id="metrics_1">Metrics<a class="headerlink" href="#metrics_1" title="Permanent link">&para;</a></h3>
 <p>The metrics collected are service latency timeseries (<code>svcLatencyMeasurement</code>) and another document that holds a summary with the different service latency quantiles (<code>svcLatencyQuantilesMeasurement</code>). It is possible to skip indexing the <code>svcLatencyMeasurement</code> metric by configuring the field <code>svcLatencyMetrics</code> of this measurement to <code>quantiles</code>. Metric documents have the following structure:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-11-19T00:41:51Z&quot;</span><span class="p">,</span>
@@ -966,7 +966,7 @@
 <span class="p">}</span>
 </code></pre></div>
 <p>When there're <code>LoadBalancer</code> services, an extra document with <code>quantileName</code> as <code>LoadBalancer</code> is also generated as shown above.</p>
-<h2 id="pprof-collection"><a class="toclink" href="#pprof-collection">pprof collection</a><a class="headerlink" href="#pprof-collection" title="Permanent link">&para;</a></h2>
+<h2 id="pprof-collection">pprof collection<a class="headerlink" href="#pprof-collection" title="Permanent link">&para;</a></h2>
 <p>This measurement can be used to collect Golang profiling information from processes running in pods from the cluster. To do so, kube-burner connects to pods labeled with <code>labelSelector</code> and running in <code>namespace</code>. This measurement uses an implementation similar to <code>kubectl exec</code>, and as soon as it connects to one pod it executes the command <code>curl &lt;pprofURL&gt;</code> to get the pprof data. pprof files are collected in a regular basis configured by the parameter <code>pprofInterval</code>, the collected pprof files are downloaded from the pods to the local directory configured by the parameter <code>pprofDirectory</code> which by default is <code>pprof</code>.</p>
 <p>As some components require authentication to get profiling information, <code>kube-burner</code> provides two different modalities to address it:</p>
 <ul>
@@ -1006,7 +1006,7 @@
 <p class="admonition-title">Warning</p>
 <p>As mentioned before, this measurement requires the <code>curl</code> command to be available in the target pods.</p>
 </div>
-<h2 id="indexing-in-different-places"><a class="toclink" href="#indexing-in-different-places">Indexing in different places</a><a class="headerlink" href="#indexing-in-different-places" title="Permanent link">&para;</a></h2>
+<h2 id="indexing-in-different-places">Indexing in different places<a class="headerlink" href="#indexing-in-different-places" title="Permanent link">&para;</a></h2>
 <p>The pod/vmi and service latency measurements send their metrics by default to all the indexers configured in the <code>metricsEndpoints</code> list, but it's possible to configure a different indexer for the quantile and the timeseries metrics by using the fields <code>quantilesIndexer</code> and <code>timeseriesIndexer</code>.</p>
 <p>For example</p>
 <div class="highlight"><pre><span></span><code><span class="nt">metricsEndpoints</span><span class="p">:</span>

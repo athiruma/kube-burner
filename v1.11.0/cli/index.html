@@ -765,7 +765,7 @@
   
 
 
-<h1 id="cli"><a class="toclink" href="#cli">CLI</a><a class="headerlink" href="#cli" title="Permanent link">&para;</a></h1>
+<h1 id="cli">CLI<a class="headerlink" href="#cli" title="Permanent link">&para;</a></h1>
 <p>kube-burner is a tool written in Golang that can be used to stress Kubernetes clusters by creating, deleting, and patching resources at a
 given rate. The actions taken by this tool are highly customizable and their available subcommands are detailed below:</p>
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>kube-burner<span class="w"> </span><span class="nb">help</span>
@@ -794,7 +794,7 @@ given rate. The actions taken by this tool are highly customizable and their ava
 
 <span class="go">Use &quot;kube-burner [command] --help&quot; for more information about a command.</span>
 </code></pre></div>
-<h2 id="init"><a class="toclink" href="#init">Init</a><a class="headerlink" href="#init" title="Permanent link">&para;</a></h2>
+<h2 id="init">Init<a class="headerlink" href="#init" title="Permanent link">&para;</a></h2>
 <p>This is the main subcommand; it triggers a new kube-burner benchmark and it supports the these flags:</p>
 <ul>
 <li><code>uuid</code>: Benchmark ID. This is essentially an arbitrary string that is used for different purposes along the benchmark. For example, to label the objects created by kube-burner as mentioned in the <a href="../reference/configuration/#default-labels">reference chapter</a>. By default, it is auto-generated.</li>
@@ -831,13 +831,13 @@ given rate. The actions taken by this tool are highly customizable and their ava
 <span class="w">  </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bar</span>
 <span class="w">  </span><span class="nt">alerts</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">alert-profile.yaml</span><span class="p p-Indicator">]</span>
 </code></pre></div>
-<h2 id="index"><a class="toclink" href="#index">Index</a><a class="headerlink" href="#index" title="Permanent link">&para;</a></h2>
+<h2 id="index">Index<a class="headerlink" href="#index" title="Permanent link">&para;</a></h2>
 <p>This subcommand can be used to collect and index the metrics from a given time range. The time range is given by:</p>
 <ul>
 <li><code>start</code>: Epoch start time. Defaults to one hour before the current time.</li>
 <li><code>end</code>: Epoch end time. Defaults to the current time.</li>
 </ul>
-<h2 id="measure"><a class="toclink" href="#measure">Measure</a><a class="headerlink" href="#measure" title="Permanent link">&para;</a></h2>
+<h2 id="measure">Measure<a class="headerlink" href="#measure" title="Permanent link">&para;</a></h2>
 <p>This subcommand can be used to collect measurements for a given set of resources which were part of a workload ran in past and are still present on the cluster (i.e only supports podLatency as of today).
 We can specify a list of namespaces and selector labels as input.</p>
 <ul>
@@ -848,13 +848,13 @@ We can specify a list of namespaces and selector labels as input.</p>
 <p class="admonition-title">Note</p>
 <p>This subcommand should only be used to fetch measurements of a workload ran in the past. Also those resources should be active on the cluster. For present cases, please refer to the alternate options in this tool.</p>
 </div>
-<h2 id="check-alerts"><a class="toclink" href="#check-alerts">Check alerts</a><a class="headerlink" href="#check-alerts" title="Permanent link">&para;</a></h2>
+<h2 id="check-alerts">Check alerts<a class="headerlink" href="#check-alerts" title="Permanent link">&para;</a></h2>
 <p>This subcommand can be used to evaluate alerts configured in the given alert profile. Similar to <code>index</code>, the time range is given by the <code>start</code> and <code>end</code> flags.</p>
-<h2 id="destroy"><a class="toclink" href="#destroy">Destroy</a><a class="headerlink" href="#destroy" title="Permanent link">&para;</a></h2>
+<h2 id="destroy">Destroy<a class="headerlink" href="#destroy" title="Permanent link">&para;</a></h2>
 <p>This subcommand requires the <code>uuid</code> flag to destroy all namespaces labeled with <code>kube-burner-uuid=&lt;UUID&gt;</code>.</p>
-<h2 id="health-check"><a class="toclink" href="#health-check">Health Check</a><a class="headerlink" href="#health-check" title="Permanent link">&para;</a></h2>
+<h2 id="health-check">Health Check<a class="headerlink" href="#health-check" title="Permanent link">&para;</a></h2>
 <p>The <code>health-check</code> subcommand assesses the status of nodes within the cluster. It provides information on the overall health of the cluster, indicating whether it is in a healthy state. In the event of an unhealthy cluster, the subcommand returns a list of nodes that are not in a "Ready" state, helping users identify and address specific issues affecting cluster stability.</p>
-<h2 id="completion"><a class="toclink" href="#completion">Completion</a><a class="headerlink" href="#completion" title="Permanent link">&para;</a></h2>
+<h2 id="completion">Completion<a class="headerlink" href="#completion" title="Permanent link">&para;</a></h2>
 <p>Generates bash a completion script that can be imported with:
 <code>. &lt;(kube-burner completion)</code></p>
 <p>Or permanently imported with:

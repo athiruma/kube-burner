@@ -731,7 +731,7 @@
   
 
 
-<h1 id="metric-profile"><a class="toclink" href="#metric-profile">Metric profile</a><a class="headerlink" href="#metric-profile" title="Permanent link">&para;</a></h1>
+<h1 id="metric-profile">Metric profile<a class="headerlink" href="#metric-profile" title="Permanent link">&para;</a></h1>
 <p>The metric-collection feature is configured through a file pointed by the <code>metrics-profile</code> flag, which can point to a local path or URL of a YAML-formatted file containing a list of the Prometheus expressions. Kube-burner will perform those queries one by one, once all jobs are finished.</p>
 <p>In a single job benchmark, the queries are executed using the benchmark start and end time as time range. In multiple job benchmarks, these queries are executed in a per job basis, and they take the different start and end times from the executed jobs.</p>
 <p>The metrics profile file has the following structure:</p>
@@ -742,7 +742,7 @@
 <span class="w">  </span><span class="nt">metricName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nodeCPU</span>
 </code></pre></div>
 <p>The <code>query</code> field holds the Prometheus expression to evaluate, and <code>metricName</code> controls the value that kube-burner will set on the <code>metricName</code> field of the generated documents. This is useful to identify metrics from a specific query. More information is available in the <a href="#metric-format">metric format section</a>.</p>
-<h2 id="instant-queries"><a class="toclink" href="#instant-queries">Instant queries</a><a class="headerlink" href="#instant-queries" title="Permanent link">&para;</a></h2>
+<h2 id="instant-queries">Instant queries<a class="headerlink" href="#instant-queries" title="Permanent link">&para;</a></h2>
 <p>In addition to the default range queries, kube-burner has the ability execute <a href="https://prometheus.io/docs/prometheus/latest/querying/api/#instant-queries">instant queries</a> against the provided Prometheus API. This can be configured by enabling the field <code>instant</code> to the desired metric.</p>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kube_node_role</span>
 <span class="w">  </span><span class="nt">metricName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nodeRoles</span>
@@ -752,7 +752,7 @@
 <p class="admonition-title">Info</p>
 <p>When using instant queries, the generated documents are resulting from scraping the last timestamp of each job. It is possible to generate an extra document resulting from scraping the first timestamp of the jobs by adding <code>captureStart: true</code> to the metric definition, the resulting document's <code>metricName</code> are appended the <code>-start</code> suffix.</p>
 </div>
-<h2 id="metric-format"><a class="toclink" href="#metric-format">Metric format</a><a class="headerlink" href="#metric-format" title="Permanent link">&para;</a></h2>
+<h2 id="metric-format">Metric format<a class="headerlink" href="#metric-format" title="Permanent link">&para;</a></h2>
 <p>The collected metrics have the following shape:</p>
 <div class="highlight"><pre><span></span><code><span class="p">[</span>
 <span class="w">  </span><span class="p">{</span>
@@ -784,7 +784,7 @@
 <p class="admonition-title">Info</p>
 <p>These extra fields are especially useful at the time of identifying and representing the collected metrics.</p>
 </div>
-<h2 id="using-the-elapsed-variable"><a class="toclink" href="#using-the-elapsed-variable">Using the elapsed variable</a><a class="headerlink" href="#using-the-elapsed-variable" title="Permanent link">&para;</a></h2>
+<h2 id="using-the-elapsed-variable">Using the elapsed variable<a class="headerlink" href="#using-the-elapsed-variable" title="Permanent link">&para;</a></h2>
 <p>There is a special go-template variable that can be used within the Prometheus expressions of a metric profile; the variable <code>elapsed</code> is automatically populated with the job duration, in seconds. This variable is especially useful in PromQL expressions using <a href="https://prometheus.io/docs/prometheus/latest/querying/functions/#aggregation_over_time">aggregations over time functions</a>.</p>
 <p>For example, the following expression gets the top 3 datapoints with the average CPU usage kubelets processes in the cluster.</p>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">irate(process_cpu_seconds_total{service=&quot;kubelet&quot;,job=&quot;kubelet&quot;}[2m]) * 100 and on (node) topk(3,avg_over_time(irate(process_cpu_seconds_total{service=&quot;kubelet&quot;,job=&quot;kubelet&quot;}[2m])[{{ .elapsed }}:]))</span>

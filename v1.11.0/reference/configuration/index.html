@@ -840,7 +840,7 @@
   
 
 
-<h1 id="reference"><a class="toclink" href="#reference">Reference</a><a class="headerlink" href="#reference" title="Permanent link">&para;</a></h1>
+<h1 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h1>
 <p>All of the magic that <code>kube-burner</code> does is described in its configuration file. As previously mentioned, the location of this configuration file is provided by the flag <code>-c</code>. This flag points to a YAML-formatted file that consists of several sections.</p>
 <p>It is possible to use <a href="https://pkg.go.dev/text/template">go-template</a> semantics within this configuration file. It is also important to note that every environment variable is passed to this template, so we can reference them using the syntax <code>{{.MY_ENV_VAR}}</code>. For example, you could define the <code>indexers</code> section of your own configuration file, such as:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">metricsEndpoints</span><span class="p">:</span>
@@ -859,7 +859,7 @@
 <span class="p p-Indicator">{{</span><span class="w"> </span><span class="nv">end</span><span class="w"> </span><span class="p p-Indicator">}}</span>
 </code></pre></div>
 <p>This feature can be very useful at the time of defining secrets, such as the user and password of our indexer, or a token to use in pprof collection.</p>
-<h2 id="global"><a class="toclink" href="#global">Global</a><a class="headerlink" href="#global" title="Permanent link">&para;</a></h2>
+<h2 id="global">Global<a class="headerlink" href="#global" title="Permanent link">&para;</a></h2>
 <p>In this section is described global job configuration, it holds the following parameters:</p>
 <table>
 <thead>
@@ -925,7 +925,7 @@
 <li><code>$HOME/.kube/config</code></li>
 <li>In-cluster config (Used when kube-burner runs inside a pod)</li>
 </ul>
-<h2 id="jobs"><a class="toclink" href="#jobs">Jobs</a><a class="headerlink" href="#jobs" title="Permanent link">&para;</a></h2>
+<h2 id="jobs">Jobs<a class="headerlink" href="#jobs" title="Permanent link">&para;</a></h2>
 <p>This section contains the list of jobs <code>kube-burner</code> will execute. Each job can hold the following parameters.</p>
 <table>
 <thead>
@@ -1131,7 +1131,7 @@
 </div>
 <p>Our configuration files strictly follow YAML syntax. To clarify on List and Object types usage, they are nothing but the <a href="https://gettaurus.org/docs/YAMLTutorial/#Lists-and-Dictionaries"><code>Lists and Dictionaries</code></a> in YAML syntax.</p>
 <p>Examples of valid configuration files can be found in the <a href="https://github.com/kube-burner/kube-burner/tree/master/examples">examples folder</a>.</p>
-<h3 id="objects"><a class="toclink" href="#objects">Objects</a><a class="headerlink" href="#objects" title="Permanent link">&para;</a></h3>
+<h3 id="objects">Objects<a class="headerlink" href="#objects" title="Permanent link">&para;</a></h3>
 <p>The objects created by <code>kube-burner</code> are rendered using the default golang's <a href="https://golang.org/pkg/text/template/">template library</a>.
 Each object element supports the following parameters:</p>
 <table>
@@ -1190,7 +1190,7 @@ Each object element supports the following parameters:</p>
 <p class="admonition-title">Info</p>
 <p>Find more info about the waiters implementation in the <code>pkg/burner/waiters.go</code> file</p>
 </div>
-<h3 id="object-wait-options"><a class="toclink" href="#object-wait-options">Object wait Options</a><a class="headerlink" href="#object-wait-options" title="Permanent link">&para;</a></h3>
+<h3 id="object-wait-options">Object wait Options<a class="headerlink" href="#object-wait-options" title="Permanent link">&para;</a></h3>
 <p>If you want to override the default waiter behaviors, you can specify wait options for your objects.</p>
 <table>
 <thead>
@@ -1235,9 +1235,9 @@ Each object element supports the following parameters:</p>
 <p class="admonition-title">Note</p>
 <p><code>waitOptions.kind</code> and <code>waitOptions.labelSelector</code> are fully optional. <code>waitOptions.kind</code> is used when an application has child objects to be waited &amp; <code>waitOptions.labelSelector</code> is used when we want to wait on objects with specific labels.</p>
 </div>
-<h3 id="default-labels"><a class="toclink" href="#default-labels">Default labels</a><a class="headerlink" href="#default-labels" title="Permanent link">&para;</a></h3>
+<h3 id="default-labels">Default labels<a class="headerlink" href="#default-labels" title="Permanent link">&para;</a></h3>
 <p>All objects created by kube-burner are labeled with <code>kube-burner-uuid=&lt;UUID&gt;,kube-burner-job=&lt;jobName&gt;,kube-burner-index=&lt;objectIndex&gt;</code>. They are used for internal purposes, but they can also be used by the users.</p>
-<h2 id="job-types"><a class="toclink" href="#job-types">Job types</a><a class="headerlink" href="#job-types" title="Permanent link">&para;</a></h2>
+<h2 id="job-types">Job types<a class="headerlink" href="#job-types" title="Permanent link">&para;</a></h2>
 <p>Configured by the parameter <code>jobType</code>, kube-burner supports four types of jobs with different parameters each:</p>
 <ul>
 <li>Create</li>
@@ -1245,9 +1245,9 @@ Each object element supports the following parameters:</p>
 <li>Read</li>
 <li>Patch</li>
 </ul>
-<h3 id="create"><a class="toclink" href="#create">Create</a><a class="headerlink" href="#create" title="Permanent link">&para;</a></h3>
+<h3 id="create">Create<a class="headerlink" href="#create" title="Permanent link">&para;</a></h3>
 <p>The default <code>jobType</code> is <strong>create</strong>. Creates objects listed in the <code>objects</code> list as described in the <a href="#objects">objects section</a>. The amount of objects created is configured by <code>jobIterations</code>, <code>replicas</code>. If the object is namespaced and has an empty <code>.metadata.namespace</code> field, <code>kube-burner</code> creates a new namespace with the name <code>namespace-&lt;iteration&gt;</code>, and creates the defined amount of objects in it.</p>
-<h3 id="delete"><a class="toclink" href="#delete">Delete</a><a class="headerlink" href="#delete" title="Permanent link">&para;</a></h3>
+<h3 id="delete">Delete<a class="headerlink" href="#delete" title="Permanent link">&para;</a></h3>
 <p>This type of job deletes objects described in the objects list. Using delete as job type the objects list would have the following structure:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">objects</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
@@ -1272,7 +1272,7 @@ Each object element supports the following parameters:</p>
 <li><code>jobPause</code></li>
 <li><code>jobIterationDelay</code></li>
 </ul>
-<h3 id="read"><a class="toclink" href="#read">Read</a><a class="headerlink" href="#read" title="Permanent link">&para;</a></h3>
+<h3 id="read">Read<a class="headerlink" href="#read" title="Permanent link">&para;</a></h3>
 <p>This type of job reads objects described in the objects list. Using read as job type the objects list would have the following structure:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">objects</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
@@ -1297,7 +1297,7 @@ Each object element supports the following parameters:</p>
 <li><code>jobIterationDelay</code></li>
 <li><code>jobIterations</code></li>
 </ul>
-<h3 id="patch"><a class="toclink" href="#patch">Patch</a><a class="headerlink" href="#patch" title="Permanent link">&para;</a></h3>
+<h3 id="patch">Patch<a class="headerlink" href="#patch" title="Permanent link">&para;</a></h3>
 <p>This type of job can be used to patch objects with the template described in the object list. This object list has the following structure:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">objects</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
@@ -1343,7 +1343,7 @@ Each object element supports the following parameters:</p>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Secret</span>
 <span class="w">    </span><span class="nt">labelSelector</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">kube-burner-job</span><span class="p">:</span><span class="w"> </span><span class="nv">create-objects</span><span class="p p-Indicator">}</span>
 </code></pre></div>
-<h2 id="churning-jobs"><a class="toclink" href="#churning-jobs">Churning Jobs</a><a class="headerlink" href="#churning-jobs" title="Permanent link">&para;</a></h2>
+<h2 id="churning-jobs">Churning Jobs<a class="headerlink" href="#churning-jobs" title="Permanent link">&para;</a></h2>
 <p>Churn is the deletion and re-creation of objects, and is supported for namespace-based jobs only. This occurs after the job has completed
 but prior to uploading metrics, if applicable. It deletes a percentage of contiguous namespaces randomly chosen and re-creates them
 with all of the appropriate objects. It will then wait for a specified delay (or none if set to <code>0</code>) before deleting and recreating the
@@ -1365,7 +1365,7 @@ next randomly chosen set. This cycle continues until the churn duration has pass
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">objectTemplate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">service.yml</span>
 <span class="w">    </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
 </code></pre></div>
-<h2 id="injected-variables"><a class="toclink" href="#injected-variables">Injected variables</a><a class="headerlink" href="#injected-variables" title="Permanent link">&para;</a></h2>
+<h2 id="injected-variables">Injected variables<a class="headerlink" href="#injected-variables" title="Permanent link">&para;</a></h2>
 <p>All object templates are injected with the variables below by default:</p>
 <ul>
 <li><code>Iteration</code>: Job iteration number.</li>
@@ -1412,9 +1412,9 @@ next randomly chosen set. This cycle continues until the churn duration has pass
 </div>
 <!-- markdownlint-restore -->
 
-<h2 id="template-functions"><a class="toclink" href="#template-functions">Template functions</a><a class="headerlink" href="#template-functions" title="Permanent link">&para;</a></h2>
+<h2 id="template-functions">Template functions<a class="headerlink" href="#template-functions" title="Permanent link">&para;</a></h2>
 <p>In addition to the default <a href="https://golang.org/pkg/text/template/">golang template semantics</a>, kube-burner is compiled with the <a href="http://masterminds.github.io/sprig/">sprig library</a>, which adds over 70 template functions for Go’s template language.</p>
-<h2 id="runonce"><a class="toclink" href="#runonce">RunOnce</a><a class="headerlink" href="#runonce" title="Permanent link">&para;</a></h2>
+<h2 id="runonce">RunOnce<a class="headerlink" href="#runonce" title="Permanent link">&para;</a></h2>
 <p>All objects within the job will iteratively run based on the JobIteration number,
 but there may be a situation if an object need to be created only once (ex. clusterrole), in such cases
 we can add an optional field as <code>runOnce</code> for that particular object to execute only once in the entire job.</p>

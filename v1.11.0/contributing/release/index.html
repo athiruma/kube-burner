@@ -738,14 +738,14 @@ graph LR
   B --&gt; C[gorelease];
   B --&gt; E[docs];
   B --&gt; D[image-upload];</code></pre>
-<h4 id="release-build"><a class="toclink" href="#release-build">Release Build</a><a class="headerlink" href="#release-build" title="Permanent link">&para;</a></h4>
+<h4 id="release-build">Release Build<a class="headerlink" href="#release-build" title="Permanent link">&para;</a></h4>
 <p>This job uses the <code>Create a new release of project</code> workflow defined in <code>gorelease.yml</code> to create a new release of the project performing the following steps:</p>
 <ol>
 <li>Checks out the code into the Go module directory.</li>
 <li>Sets up Go 1.19.</li>
 <li>Runs GoReleaser to create a new release, including the removal of previous distribution files.</li>
 </ol>
-<h4 id="image-upload"><a class="toclink" href="#image-upload">Image Upload</a><a class="headerlink" href="#image-upload" title="Permanent link">&para;</a></h4>
+<h4 id="image-upload">Image Upload<a class="headerlink" href="#image-upload" title="Permanent link">&para;</a></h4>
 <p>This job uses the <code>Upload Containers to Quay</code> workflow defined in <code>image-upload.yml</code> to upload containers to the Quay registry for multiple architectures (arm64, amd64, ppc64le, s390x) performing the following steps:</p>
 <ol>
 <li>Installs the dependencies required for multi-architecture builds.</li>
@@ -762,7 +762,7 @@ graph LR
 <li>Logs in to Quay using the provided QUAY_USER and QUAY_TOKEN secrets.</li>
 <li>Creates and pushes the container manifest using the make manifest command, with the organization specified.</li>
 </ol>
-<h4 id="docs-update"><a class="toclink" href="#docs-update">Docs Update</a><a class="headerlink" href="#docs-update" title="Permanent link">&para;</a></h4>
+<h4 id="docs-update">Docs Update<a class="headerlink" href="#docs-update" title="Permanent link">&para;</a></h4>
 <p>Uses the <code>Deploy docs</code> workflow defined in <code>docs.yml</code> to generate and deploy the documentation performing the following steps:</p>
 <ol>
 <li>Checks out the code.</li>

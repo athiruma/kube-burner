@@ -746,9 +746,9 @@
   
 
 
-<h1 id="alerting"><a class="toclink" href="#alerting">Alerting</a><a class="headerlink" href="#alerting" title="Permanent link">&para;</a></h1>
+<h1 id="alerting">Alerting<a class="headerlink" href="#alerting" title="Permanent link">&para;</a></h1>
 <p>Kube-burner includes an alerting feature able to evaluate Prometheus expressions in order to fire and index alerts.</p>
-<h2 id="configuration"><a class="toclink" href="#configuration">Configuration</a><a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
 <p>Alerting is configured through a configuration file pointed by the flag <code>--alert-profile</code> or <code>-a</code>, which is a YAML formatted file with the following shape:</p>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">expr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">avg_over_time(histogram_quantile(0.99, rate(etcd_disk_wal_fsync_duration_seconds_bucket[2m]))[5m:]) &gt; 0.01</span>
 <span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5 minutes avg. etcd fsync latency on {{$labels.pod}} higher than 10ms {{$value}}</span>
@@ -770,14 +770,14 @@
 <li><code>error</code>: Prints an <em>error</em> message with the alarm description to stdout and makes kube-burner rc = 1</li>
 <li><code>critical</code>: Prints a <em>fatal</em> message with the alarm description to stdout and aborts execution immediately with rc =1 0</li>
 </ul>
-<h3 id="using-the-elapsed-variable"><a class="toclink" href="#using-the-elapsed-variable">Using the elapsed variable</a><a class="headerlink" href="#using-the-elapsed-variable" title="Permanent link">&para;</a></h3>
+<h3 id="using-the-elapsed-variable">Using the elapsed variable<a class="headerlink" href="#using-the-elapsed-variable" title="Permanent link">&para;</a></h3>
 <p>There is a special go-template variable that can be used within the Prometheus expression, the variable <strong>elapsed</strong> is set to the value of the job duration (or the range given to check-alerts). This variable is especially useful in expressions using <a href="https://prometheus.io/docs/prometheus/latest/querying/functions/#aggregation_over_time">aggregations over time functions</a>.
 i.e:</p>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">expr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">avg_over_time(histogram_quantile(0.99, rate(etcd_disk_wal_fsync_duration_seconds_bucket[2m]))[{{ .elapsed }}:]) &gt; 0.01</span>
 <span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">avg. etcd fsync latency on {{$labels.pod}} higher than 10ms {{$value}}</span>
 <span class="w">  </span><span class="nt">severity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">error</span>
 </code></pre></div>
-<h2 id="checking-alerts"><a class="toclink" href="#checking-alerts">Checking alerts</a><a class="headerlink" href="#checking-alerts" title="Permanent link">&para;</a></h2>
+<h2 id="checking-alerts">Checking alerts<a class="headerlink" href="#checking-alerts" title="Permanent link">&para;</a></h2>
 <p>It is possible to look for alerts without triggering a kube-burner workload by using the <code>check-alerts</code> <a href="https://kube-burner.github.io/kube-burner/latest/cli/#check-alerts">subcommand</a>. Similar to the <code>index</code> CLI option, this option accepts the flags <code>--start</code> and <code>--end</code> to evaluate the alerts at a given time range.</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>kube-burner<span class="w"> </span>check-alerts<span class="w"> </span>-u<span class="w"> </span>https://prometheus.url.com<span class="w"> </span>-t<span class="w"> </span><span class="si">${</span><span class="nv">token</span><span class="si">}</span><span class="w"> </span>-a<span class="w"> </span>alert-profile.yml
 INFO<span class="o">[</span><span class="m">2020</span>-12-10<span class="w"> </span><span class="m">11</span>:47:23<span class="o">]</span><span class="w"> </span>👽<span class="w"> </span>Initializing<span class="w"> </span>prometheus<span class="w"> </span>client
@@ -795,7 +795,7 @@ INFO<span class="o">[</span><span class="m">2020</span>-12-10<span class="w"> </
 INFO<span class="o">[</span><span class="m">2020</span>-12-10<span class="w"> </span><span class="m">11</span>:47:26<span class="o">]</span><span class="w"> </span>Evaluating<span class="w"> </span>expression:<span class="w"> </span><span class="s1">&#39;avg_over_time(histogram_quantile(0.99, sum(rate(apiserver_request_duration_seconds_bucket{apiserver=&quot;kube-apiserver&quot;,verb=&quot;LIST&quot;,scope=&quot;cluster&quot;}[2m])) by (verb,resource,subresource,le))[5</span>
 <span class="s1">m:]) &gt; 30&#39;</span>
 </code></pre></div>
-<h2 id="indexing-alerts"><a class="toclink" href="#indexing-alerts">Indexing alerts</a><a class="headerlink" href="#indexing-alerts" title="Permanent link">&para;</a></h2>
+<h2 id="indexing-alerts">Indexing alerts<a class="headerlink" href="#indexing-alerts" title="Permanent link">&para;</a></h2>
 <p>When indexing is enabled, the alerts sent by kube-burner are automatically indexed by the provided <code>indexer</code>. The documents generated by these alerts have the following structure:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-01-19T22:20:10+01:00&quot;</span><span class="p">,</span>
