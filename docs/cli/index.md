@@ -40,7 +40,7 @@ This is the main subcommand; it triggers a new kube-burner benchmark and it supp
 - `log-level`: Logging level, one of: `debug`, `error`, `info` or `fatal`. Default `info`.
 - `metrics-endpoint`: Path to a valid metrics endpoint file.
 - `skip-tls-verify`: Skip TLS verification for Prometheus. The default is `true`.
-- `timeout`: Kube-burner benchmark global timeout. When timing out, return code is 2. The default is `4h`. 
+- `timeout`: Kube-burner benchmark global timeout. When timing out, return code is 2. The default is `4h`.
 - `kubeconfig`: Path to the kubeconfig file.
 - `kube-context`: The name of the kubeconfig context to use.
 - `user-metadata`: YAML file path containing custom user-metadata to be indexed along with the `jobSummary` document.
